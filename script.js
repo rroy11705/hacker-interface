@@ -1,17 +1,33 @@
-function callPopup() {
-    window.location.href = "/calling-popup.html"
+function toggleCallPopup() {
+    const callPopup = document.getElementById('call-popup');
+    const mobileFrame = document.getElementById('mobile-frame');
+    const mobileFrameIncomingCall = document.getElementById('mobile-frame-incoming-call');
+    const mobileFrameCallAccepted = document.getElementById('mobile-frame-call-accepted');
+    callPopup.style.display = callPopup.style.display === "none" ? 'inline-flex' : 'none';
+    mobileFrame.style.display = 'none';
+    mobileFrameIncomingCall.style.display = 'block';
+    mobileFrameCallAccepted.style.display = 'none';
 }
 
-function smsPopup() {
-    window.location.href = "/sms-popup.html"
+function toggleSMSPopup() {
+    const smsPopup = document.getElementById('sms-popup');
+    smsPopup.style.display = smsPopup.style.display === "none" ? 'inline-flex' : 'none';
 }
 
 function acceptCall() {
-    window.location.href = "/call-accepted.html"
+    const callPopup = document.getElementById('call-popup');
+    const mobileFrame = document.getElementById('mobile-frame');
+    const mobileFrameIncomingCall = document.getElementById('mobile-frame-incoming-call');
+    const mobileFrameCallAccepted = document.getElementById('mobile-frame-call-accepted');
+    callPopup.style.display = 'none';
+    mobileFrame.style.display = 'none';
+    mobileFrameIncomingCall.style.display = 'none';
+    mobileFrameCallAccepted.style.display = 'block';
 }
 
-function openSettings() {
-    window.location.href = "/settings.html"
+function toggleSettings() {
+    const settingsMenu = document.getElementById('settings-menu');
+    settingsMenu.style.display = settingsMenu.style.display === "none" ? 'inline-flex' : 'none';
 }
 
 function goToIndex() {
@@ -19,9 +35,15 @@ function goToIndex() {
 }
 
 function flightModeOn() {
-    window.location.href = "/settings-fm-on.html"
+    const flightModeOnButton = document.getElementById('flight-mode-on');
+    const flightModeOffButton = document.getElementById('flight-mode-off');
+    flightModeOnButton.style.color = 'rgba(0, 0, 0, 1)';
+    flightModeOffButton.style.color = 'rgba(0, 0, 0, 0.30)';
 }
 
 function flightModeOff() {
-    window.location.href = "/settings.html"
+    const flightModeOnButton = document.getElementById('flight-mode-on');
+    const flightModeOffButton = document.getElementById('flight-mode-off');
+    flightModeOnButton.style.color = 'rgba(0, 0, 0, 0.30)';
+    flightModeOffButton.style.color = 'rgba(0, 0, 0, 1)';
 }
