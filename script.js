@@ -25,6 +25,17 @@ function acceptCall() {
     mobileFrameCallAccepted.style.display = 'block';
 }
 
+function endCall() {
+    const callPopup = document.getElementById('call-popup');
+    const mobileFrame = document.getElementById('mobile-frame');
+    const mobileFrameIncomingCall = document.getElementById('mobile-frame-incoming-call');
+    const mobileFrameCallAccepted = document.getElementById('mobile-frame-call-accepted');
+    callPopup.style.display = 'none';
+    mobileFrame.style.display = 'block';
+    mobileFrameIncomingCall.style.display = 'none';
+    mobileFrameCallAccepted.style.display = 'none';
+}
+
 function toggleSettings() {
     const settingsMenu = document.getElementById('settings-menu');
     settingsMenu.style.display = settingsMenu.style.display === "none" ? 'inline-flex' : 'none';
