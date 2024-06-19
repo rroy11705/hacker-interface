@@ -11,7 +11,19 @@ function toggleCallPopup() {
 
 function toggleSMSPopup() {
     const smsPopup = document.getElementById('sms-popup');
+    if (smsPopup.style.display === 'inline-flex') {
+        setTimeout(() => {
+            decreaseNumberAnimation('bank-amount', 175231, 231, 1);
+            increaseNumberAnimation('hacker-bank-amount', 0, 175000, 1);
+        }, 2000);
+    }
     smsPopup.style.display = smsPopup.style.display === "none" ? 'inline-flex' : 'none';
+}
+
+function convertToCrypto() {
+    setTimeout(() => {
+        decreaseNumberAnimation('hacker-bank-amount', 175000, 0, 1);
+    }, 200);
 }
 
 function acceptCall() {
@@ -57,4 +69,66 @@ function flightModeOff() {
     const flightModeOffButton = document.getElementById('flight-mode-off');
     flightModeOnButton.style.color = 'rgba(0, 0, 0, 0.30)';
     flightModeOffButton.style.color = 'rgba(0, 0, 0, 1)';
+}
+
+
+function increaseNumberAnimation(elementId, currentNumber, endNumber, speed = 10) {
+    const element = document.getElementById(elementId)
+    
+    if(!element) return
+    
+    const animationRunning = JSON.parse(element.dataset.animationRunning ?? false)
+    
+    if(animationRunning) return
+    
+    element.dataset.animationRunning = true
+    
+    incNbrRec(currentNumber, endNumber, element, speed)
+}
+
+function incNbrRec(currentNumber, endNumber, element, speed) {
+    if (currentNumber <= endNumber) {
+    element.innerHTML = formatNumber(currentNumber)
+    setTimeout(function() {
+        incNbrRec(currentNumber + 1000, endNumber, element, speed)
+    }, speed)
+    } else {
+    element.dataset.animationRunning = false
+    }
+}
+
+function decreaseNumberAnimation(elementId, currentNumber, endNumber, speed = 10) {
+    const element = document.getElementById(elementId)
+    
+    if(!element) return
+    
+    const animationRunning = JSON.parse(element.dataset.animationRunning ?? false)
+    
+    if(animationRunning) return
+    
+    element.dataset.animationRunning = true
+    
+    decNbrRec(currentNumber, endNumber, element, speed)
+}
+
+function decNbrRec(currentNumber, endNumber, element, speed) {
+    if (currentNumber >= endNumber) {
+    element.innerHTML = formatNumber(currentNumber)
+    setTimeout(function() {
+        decNbrRec(currentNumber - 1000, endNumber, element, speed)
+    }, speed)
+    } else {
+    element.dataset.animationRunning = false
+    }
+}
+
+function formatNumber(num) {
+    let numStr = num.toString();
+    let lastThree = numStr.slice(-3);
+    let otherNumbers = numStr.slice(0, -3);
+    if (otherNumbers !== '') {
+        lastThree = ',' + lastThree;
+    }
+    let result = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+    return result;
 }
